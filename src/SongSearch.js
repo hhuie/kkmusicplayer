@@ -24,7 +24,7 @@ function SongSearch() {
     <div id="search">
       <h4>Search</h4>
       <input type="text" id="input" onInput={(e) => typing(e)}/>
-      <div>
+      <div id="songListContainer">
           <SongList songData={filteredSongs}/>
       </div>
 
