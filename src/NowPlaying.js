@@ -1,23 +1,31 @@
-import React, { useContext } from 'react'
-import { useSong, useSongUpdate } from './SongContext'
+import React from 'react'
+import { useSong, useSongUpdate, useCurrSong, useShuffle } from './SongContext'
+import ShuffleButton from './ShuffleButton'
 
 
 const NowPlaying = (props) => {
-  const [songs, setSongs, filteredSongs, setFilteredSongs, currSong, setCurrSong] = useSong()
+  const [songs] = useSong()
+  const [currSong] = useCurrSong()
   const updateSong = useSongUpdate()
+  const shuffle = useShuffle()
   console.log(currSong)
 
   const currSongObj = songs.find(s => s.name['name-USen'] === currSong[0])
   console.log(currSongObj)
-  //<source src={currSongObj['music_uri']} type="audio/mp3"/>
 
   function ended() {
-    console.log('ended')
-    const nextSong = songs.find(s => s.id === currSongObj.id + 1)
-    if (nextSong) {
-      updateSong(nextSong.name['name-USen'])
+    if (!shuffle) {
+      const nextSong = songs.find(s => s.id === currSongObj.id + 1)
+      if (nextSong) {
+        updateSong(nextSong.name['name-USen'])
+      } else {
+        updateSong(songs[0].name['name-USen'])
+      }
     } else {
-      updateSong(songs[0].name['name-USen'])
+      var num = Math.floor(Math.random() * 94) + 1
+      console.log(num)
+      const nextSong = songs.find(s => s.id === num)
+      updateSong(nextSong.name['name-USen'])
     }
   }
 
@@ -31,36 +39,14 @@ const NowPlaying = (props) => {
         {currSongObj.name['name-USen']}
         </div>
         <audio src={currSongObj['music_uri']} onEnded={ended} controls autoPlay>
-
         </audio>
+        <ShuffleButton/>
       </div>
     )
-} else {
-  console.log("nothing playing")
-  return null
-}
-}
-
-/*class NowPlaying extends React.Component {
-
-  state = {
-    currSong: null,
-    currArt: null,
-    currFile: null
+  } else {
+    console.log("nothing playing")
+    return null
   }
-  render() {
-    return(
-      <div>
-        <h1>Now Playing</h1>
-        <img src={this.props.art} alt="nothing playing"/>
-        {this.props.name}
-        <audio controls>
-          <source src={this.props.file} type="audio/mp3"/>
-        </audio>
-
-      </div>)
-  }
-
-}*/
+}
 
 export default NowPlaying

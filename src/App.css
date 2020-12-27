@@ -3,6 +3,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  padding: 0.2em;
+}
+
 li:hover {
   background-color: #585858;
   color: #efefef;

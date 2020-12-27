@@ -1,16 +1,11 @@
-import React, { useContext } from 'react'
-import { useSong, useSongUpdate } from './SongContext'
+import React from 'react'
+import { useSongUpdate } from './SongContext'
 
 function ListItem(props) {
-  //const [currSong, setCurrSong] = useSong()
   const songUpdate = useSongUpdate()
 
-  /*const updateSong = (e) => {
-    //console.log(e.target.value)
-    setCurrSong([e.target.value])
-  }*/
-
   const localSongUpdate = (e) => {
+    e.preventDefault()
     songUpdate(e.target.id)
   }
 
@@ -21,7 +16,7 @@ function ListItem(props) {
 }
 
 function SongList(props) {
-  const [songs, setSongs, filteredSongs, setFilteredSongs, currSong, setCurrSong] = useSong()
+  //const [songs, setSongs, filteredSongs, setFilteredSongs, currSong, setCurrSong] = useSong()
 
   // const playSong = (e) => {
   //   e.preventDefault()

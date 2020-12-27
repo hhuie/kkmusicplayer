@@ -2,6 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 
 const SongContext = React.createContext()
 const SongUpdateContext = React.createContext()
+const FilteredContext = React.createContext()
+const CurrSongContext = React.createContext()
+const ShuffleContext = React.createContext()
+const ShuffleUpdateContext = React.createContext()
 
 export function useSong() {
   return useContext(SongContext)
@@ -11,11 +15,27 @@ export function useSongUpdate() {
   return useContext(SongUpdateContext)
 }
 
+export function useFiltered() {
+  return useContext(FilteredContext)
+}
+
+export function useCurrSong() {
+  return useContext(CurrSongContext)
+}
+
+export function useShuffle() {
+  return useContext(ShuffleContext)
+}
+
+export function useShuffleUpdate() {
+  return useContext(ShuffleUpdateContext)
+}
 
 export function SongProvider ({ children }) {
   const [songs, setSongs] = useState([])
   const [filteredSongs, setFilteredSongs] = useState([])
   const [currSong, setCurrSong] = useState([])
+  const [shuffle, setShuffle] = useState(false)
 
   useEffect( () => {
     var allSongs = [];
@@ -23,10 +43,9 @@ export function SongProvider ({ children }) {
     fetch(endPoint)
       .then(data => data.json())
       .then(results => {
-        //console.log(results)
         allSongs = Object.values(results)
         setSongs(prevSongs => allSongs)
-        setFilteredSongs(allSongs) //may cause error(?)
+        setFilteredSongs(allSongs)
       })
       .catch(err => console.log(err))
   }, []);
@@ -36,11 +55,24 @@ export function SongProvider ({ children }) {
     console.log(currSong)
   }
 
+  function updateShuffle() {
+    setShuffle(prev => !prev)
+    console.log(shuffle)
+  }
+
   return(
-    <SongContext.Provider value={[songs, setSongs, filteredSongs, setFilteredSongs, currSong, setCurrSong]}>
-    <SongUpdateContext.Provider value={updateSong}>
-      {children}
-    </SongUpdateContext.Provider>
+    <SongContext.Provider value={[songs, setSongs]}>
+      <FilteredContext.Provider value={[filteredSongs, setFilteredSongs]}>
+        <CurrSongContext.Provider value={[currSong, setCurrSong]}>
+          <SongUpdateContext.Provider value={updateSong}>
+          <ShuffleContext.Provider value={shuffle}>
+          <ShuffleUpdateContext.Provider value={updateShuffle}>
+            {children}
+          </ShuffleUpdateContext.Provider>
+          </ShuffleContext.Provider>
+          </SongUpdateContext.Provider>
+        </CurrSongContext.Provider>
+      </FilteredContext.Provider>
     </SongContext.Provider>
   )
 }
