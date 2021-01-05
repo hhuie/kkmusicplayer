@@ -4,8 +4,6 @@ import { useSong, useFiltered } from './SongContext'
 
 
 function SongSearch() {
-  //const [songs, setSongs, filteredSongs, setFilteredSongs] = useContext(SongContext)
-  //const [filteredSongs, setFilteredSongs] = useContext(SongContext)
   const [songs] = useSong()
   const [filteredSongs, setFilteredSongs] = useFiltered()
 
@@ -21,9 +19,8 @@ function SongSearch() {
   	}
 
   return (
-    <div id="search">
-      <h4>Search</h4>
-      <input type="text" id="input" onInput={(e) => typing(e)}/>
+    <div id="search" className="flexbox-item">
+      Search: <input type="text" id="input" onInput={(e) => typing(e)}/>
       <div id="songListContainer">
           <SongList songData={filteredSongs}/>
       </div>

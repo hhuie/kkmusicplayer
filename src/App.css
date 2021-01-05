@@ -1,49 +1,98 @@
+a:visited {
+  color: black;
+}
 
+audio {
+  width: 80%;
+}
 
-ul {
-  list-style-type: none;
+#albumArt {
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+
+body {
+  background-color: rgb(245, 249, 255);
+  color: #262626;
+}
+
+.flexbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flexbox-item {
+  width: 30%;
+  padding: 2em;
+  min-width: 200px;
+  margin: 10px;
+}
+
+header {
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+}
+
+h2 {
+  font-family: 'Comfortaa', cursive;
+  margin-top: -0.5em;
+}
+
+.icons {
+  width: 50px;
+}
+
+#input {
+    width: 50%;
 }
 
 li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 0.2em;
+  border-bottom: 0.5px solid black;
+  vertical-align: middle;
+  /*display: table-row;*/
 
 }
 
 li:hover {
-  background-color: #585858;
+  background-color: rgb(89, 153, 255);
   color: #efefef;
   font-size: 1.2em;
+  text-decoration: underline;
 }
 
-svg {
-  pointer-events: none;
+#nowPlayingContainer {
+  /*float: right;
+  margin-right: 10%;*/
+  /*width: 35%;*/
+  text-align: center;
+  background-color: rgba(0, 91, 219, 0.15);
+  /*padding: 0.5em;*/
+  border-radius: 1em;
 }
 
-svg:hover {
-  color: #00ff00;
+#nowPlayingTitle {
+  font-size: 1.2em;
+  margin-top: -0.7em;
+  margin-bottom: 0.5em;
 }
 
-
-#search {
-  height: 35vw;
-  width: 25%;
-  float: left;
-  margin-left: 20%;
-}
-
-#songListContainer {
-  height: 100%;
-  width: 100%;
-  background-color: #cecece;
-}
-
-#songList {
-  height: 100%;
-  overflow: scroll;
-}
-
-a:visited {
-  color: black;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .playIcon {
@@ -55,19 +104,19 @@ a:visited {
   color: #00ff00;
 }
 
-#nowPlayingContainer {
-  float: right;
-  margin-right: 10%;
-  width: 40%;
-  text-align: center;
+.repeat {
+  font-size: 2em;
 }
 
+#search {
+  height: 25em;
+  /*width: 25%;*/
+  /*float: left;*/
+  /*margin-left: 15%;*/
+  background-color: rgba(0, 91, 219, 0.15);
+  border-radius: 1em;
+  /*padding: 2em;*/
 
-
-#albumArt {
-  width: 30%;
-  display: block;
-  margin: auto;
 }
 
 .shuffle {
@@ -78,16 +127,29 @@ a:visited {
   color: #00ff00;
 }
 
-#unshuffleBtn{
-  color: #707070;
+#songListContainer {
+  height: 95%;
+  /*width: 90%;*/
 }
 
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+#songList {
+  height: 100%;
+  overflow: scroll;
+}
+
+svg {
+  pointer-events: none;
+  position: relative;
+  /*margin-left: -30px;
+  margin-bottom: 20px;*/
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  /*display: table;*/
+}
+
+#unshuffleBtn{
+  color: #707070;
 }

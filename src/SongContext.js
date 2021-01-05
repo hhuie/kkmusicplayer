@@ -6,6 +6,8 @@ const FilteredContext = React.createContext()
 const CurrSongContext = React.createContext()
 const ShuffleContext = React.createContext()
 const ShuffleUpdateContext = React.createContext()
+const RepeatContext = React.createContext()
+const RepeatUpdateContext = React.createContext()
 
 export function useSong() {
   return useContext(SongContext)
@@ -31,11 +33,20 @@ export function useShuffleUpdate() {
   return useContext(ShuffleUpdateContext)
 }
 
+export function useRepeat() {
+  return useContext(RepeatContext)
+}
+
+export function useRepeatUpdate() {
+  return useContext(RepeatUpdateContext)
+}
+
 export function SongProvider ({ children }) {
   const [songs, setSongs] = useState([])
   const [filteredSongs, setFilteredSongs] = useState([])
   const [currSong, setCurrSong] = useState([])
   const [shuffle, setShuffle] = useState(false)
+  const [repeat, setRepeat] = useState(false)
 
   useEffect( () => {
     var allSongs = [];
@@ -60,6 +71,10 @@ export function SongProvider ({ children }) {
     console.log(shuffle)
   }
 
+  function updateRepeat() {
+    setRepeat(prev => !prev)
+  }
+
   return(
     <SongContext.Provider value={[songs, setSongs]}>
       <FilteredContext.Provider value={[filteredSongs, setFilteredSongs]}>
@@ -67,7 +82,11 @@ export function SongProvider ({ children }) {
           <SongUpdateContext.Provider value={updateSong}>
           <ShuffleContext.Provider value={shuffle}>
           <ShuffleUpdateContext.Provider value={updateShuffle}>
+          <RepeatContext.Provider value={repeat}>
+          <RepeatUpdateContext.Provider value={updateRepeat}>
             {children}
+          </RepeatUpdateContext.Provider>
+          </RepeatContext.Provider>
           </ShuffleUpdateContext.Provider>
           </ShuffleContext.Provider>
           </SongUpdateContext.Provider>

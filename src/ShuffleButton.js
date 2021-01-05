@@ -8,10 +8,16 @@ function ShuffleButton() {
   const shuffle = useShuffle()
 
   if (shuffle) {
-    return <button onClick={update}><FontAwesomeIcon icon={faRandom} id='shuffleBtn' className='shuffle'/></button>
+    return (
+      <div>
+      Toggle Shuffle: <button onClick={update}><FontAwesomeIcon icon={faRandom} id='shuffleBtn' className='shuffle'/></button>
+      </div>
+    )
   }
   return (
-    <button onClick={update}><FontAwesomeIcon icon={faRandom} id='unshuffleBtn' className='shuffle'/> </button>
+    <div>
+    Toggle Shuffle: <button onClick={update}><FontAwesomeIcon icon={faRandom} id='unshuffleBtn' className='shuffle'/> </button>
+    </div>
   )
 }
 

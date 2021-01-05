@@ -1,15 +1,18 @@
-//import logo from './logo.svg';
 import './App.css';
 import SongSearch from './SongSearch'
 import NowPlaying from './NowPlaying'
+import Header from './Header'
 import { SongProvider } from './SongContext'
 
 function App() {
   return (
     <SongProvider>
     <div className="App">
-      <SongSearch />
-      <NowPlaying />
+      <Header />
+      <div className="flexbox-container">
+        <SongSearch />
+        <NowPlaying />
+      </div>
     </div>
     </SongProvider>
   );
