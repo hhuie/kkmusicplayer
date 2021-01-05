@@ -11,7 +11,7 @@ A simple web music player for songs from the video game Animal Crossing: New Hor
 I created this project in order to improve my React skills, learn how to use context and hooks, and practice CSS. This project was bootstrapped with Create React App and uses [ACNH API](http://acnhapi.com/) to fetch song metadata.
 
 ## Setup
-To run the project, install it locally using npm:
+To run the project, install it locally using npm: (runs on localhost:3000)
 ```
 cd kkmusicplayer
 npm install
